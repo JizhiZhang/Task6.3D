@@ -210,7 +210,8 @@ app.get('/forgot', (req, res) => {
 app.post('/forgot_handler', async (req, res) => {
     const email = req.body.email
     if (email) {
-        let url = "http://localhost:5000/reset/" + email;
+        // let url = "http://localhost:5000/reset/" + email;
+        let url = "https://infinite-hollows-91372.herokuapp.com/reset/" + email;
         sc.send(email, 'iCrowd Password Reset', '<h1><a href="' + url + '">Click here to reset password</a></h1>').then((info) => {
             if (info.message == 'success') {
                 res.redirect('/')
@@ -254,11 +255,16 @@ app.post('/reset/:email', async (req, res) => {
     }
 })
 
-//Port
+//
 let port = process.env.PORT;
 if (port == null || port == "") {
-    port = 5000;
+  port = 5000;
 }
-var server = app.listen(port, function () {
-    console.log("server is running on http://localhost:" + port)
-})
+app.listen(port);
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//     port = 5000;
+// }
+// var server = app.listen(port, function () {
+//     console.log("server is running on http://localhost:" + port)
+// })
