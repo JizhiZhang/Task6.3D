@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const User = require('./models/User')
 const User_google = require('./models/User_google')
 const validator = require('validator')
-const alert = require('alert')
+// const alert = require('alert')
 const path = require('path')
 const https = require('https')
 const bcrypt = require('bcrypt')
@@ -111,13 +111,13 @@ app.post('/login', (req, res)=>{
                 res.redirect("/reqtask")
             }
             else{
-                alert("Wrong password!")
-                // res.send("Wrong password!")
+                // alert("Wrong password!")
+                res.send("Wrong password!")
             }
         }
         else{
-            alert("Invalid email address!")
-            // res.send("Invalid email address!")
+            // alert("Invalid email address!")
+            res.send("Invalid email address!")
         }
     })
 
@@ -139,8 +139,8 @@ app.post('/register', (req, res)=>{
     //Determine whether the mailbox has been registered
     User.findOne({email: email}, function(err, doc){
         if(doc){
-            alert("This email address has already been registered! Please change another email address!")
-            // res.send("This email address has already been registered! Please change another email address!")
+            // alert("This email address has already been registered! Please change another email address!")
+            res.send("This email address has already been registered! Please change another email address!")
         }
         else{
             user.save(function(error){
